@@ -24,19 +24,29 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
             return View(bounty);
         }
         [Authorize]
-        public IActionResult Create()
+        public IActionResult Create(string id)
         {
-            return View();
+            var bounty = new Bounty
+            {
+                AccountId = id,
+            };
+            return View(bounty);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateProcess([Bind("account, Title, Description, Reward")]Bounty bounty)
+        public async Task<IActionResult> CreateProcess([Bind("AccountId, Title, Description, reward")] Bounty bounty)
         {
-            if (ModelState.IsValid)
+            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (currentUserId == null)
             {
-                await _bountyService.Add(bounty);
-                return RedirectToAction("Home", "Bounty");
+                return Unauthorized();
             }
-            return View("Create");
+            if (!ModelState.IsValid)
+            {
+                return View("Create", "Bounty");
+            }
+            await _bountyService.Add(bounty);
+            return RedirectToAction("Home", "Bounty");
         }
     }
 }

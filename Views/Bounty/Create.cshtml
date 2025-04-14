@@ -7,7 +7,7 @@
 	@Html.ValidationSummary()
 	<form asp-action="CreateProcess" asp-controller="Bounty" method="post">
 		<div class="form-group">
-			<input hidden asp-for="account" type="text" class="form-label" />
+			<input type="hidden" asp-for="AccountId" />
 		</div>
 		<div class="form-group">
 			<label for="Title">Title</label>

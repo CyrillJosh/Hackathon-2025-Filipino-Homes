@@ -30,13 +30,16 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginProcess([Bind("Username, Password")] Account account, string ReturnUrl)
         {
+
             account.Password = _authenticationService.HashPassword(account.Password);
             bool valid = await _authenticationService.UserAccount(account.Username, account.Password);
 
             if (valid)
             {
+                account = await _authenticationService.GetAccount(account.Username, account.Password);
                 var claims = new List<Claim> {
-               new Claim(ClaimTypes.Name, account.Username)
+               new Claim(ClaimTypes.Name, account.Username),
+              new Claim(ClaimTypes.NameIdentifier, account.Id)
                };
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

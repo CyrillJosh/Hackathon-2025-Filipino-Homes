@@ -5,9 +5,9 @@ using System.Text;
 namespace Hackathon_2025_Filipino_Homes.Data.Services
 {
     public class AuthService : IAuthService
-    {
+    { 
         private readonly HackathonContext _context;
-
+         
         public AuthService(HackathonContext context)
         {
             _context = context;
@@ -25,6 +25,7 @@ namespace Hackathon_2025_Filipino_Homes.Data.Services
             await _context.SaveChangesAsync();
         }
 
+
         //Hashing
         public string HashPassword(string password)
         {
@@ -38,5 +39,12 @@ namespace Hackathon_2025_Filipino_Homes.Data.Services
         {
             return await _context.account.AnyAsync(u => u.Username == username && u.Password == password);
         }
+
+        public async Task<Account> GetAccount(string username, string password)
+        {
+            return await _context.account.FirstOrDefaultAsync(u=> u.Username == username && u.Password == password);
+        }
+
+
     }
 }

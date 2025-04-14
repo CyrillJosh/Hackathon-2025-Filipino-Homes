@@ -13,11 +13,7 @@ namespace Hackathon_2025_Filipino_Homes.Data.Services
         }
         public async Task Add(Bounty bounty)
         {
-            var account = await _context.account.FirstOrDefaultAsync(a => a.Id == bounty.AccountId);
-            if (account != null)
-            {
-                bounty.AccountId = account.Id;
-            }
+
             _context.bounty.Add(bounty);
             await _context.SaveChangesAsync();
         }
