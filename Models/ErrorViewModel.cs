@@ -1,4 +1,4 @@
-namespace Hackathon_2025_Filipino_Homes.Models { }
+namespace Hackathon_2025_Filipino_Homes.Models 
 
 {
     public class ErrorViewModel

@@ -16,7 +16,7 @@ namespace Hackathon_2025_Filipino_Homes.Models
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         public string Email { get; set; } = null!;
-        public int? UserId { get; set; }
+        public string? UserId { get; set; }
         [ForeignKey("UserId")]
         public User? user { get; set; }
     }

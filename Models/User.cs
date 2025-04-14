@@ -12,7 +12,7 @@ namespace Hackathon_2025_Filipino_Homes.Models
         public string Lastname { get; set; } = null!;
         [Required(ErrorMessage = "Age is required")]
         public int Age { get; set; }
-        public int? AccountId { get; set; }
+        public string? AccountId { get; set; }
         public Account? account { get; set; }
 
 
