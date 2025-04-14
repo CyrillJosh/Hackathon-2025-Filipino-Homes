@@ -13,6 +13,7 @@ namespace Hackathon_2025_Filipino_Homes.Models
         public string Description { get; set; } = null!;
         [Required(ErrorMessage = "Reward is required")]
         public double reward { get; set; }
+        public bool status { get; set; } = false;
         public string? AccountId { get; set; }
         [ForeignKey("AccountId")]
         public Account? account { get; set; }

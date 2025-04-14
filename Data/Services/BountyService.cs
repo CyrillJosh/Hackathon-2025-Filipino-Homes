@@ -23,7 +23,5 @@ namespace Hackathon_2025_Filipino_Homes.Data.Services
             var bounty = await _context.bounty.Include(u=> u.account).ToListAsync();
             return bounty;
         }
-
-  
     }
 }
