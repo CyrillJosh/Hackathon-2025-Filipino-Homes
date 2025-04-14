@@ -19,5 +19,8 @@ namespace Hackathon_2025_Filipino_Homes.Models
         public string? UserId { get; set; }
         [ForeignKey("UserId")]
         public User? user { get; set; }
+        public string? BountyId { get; set; }
+        [ForeignKey("BountyId")]
+        public Bounty? bounty { get; set; }
     }
 }

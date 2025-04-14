@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Hackathon_2025_Filipino_Homes.Models.Account>
+@{
+	ViewData["Title"] = "Bounty Homepage - Filipino Homes";
+}
+
+
+ <div class="container">
+	<a class="btn btn-primary" asp-action="CreateBounty" asp-controller="Bounty">Create Bounty</a>
+
+	<h3>Homepage</h3>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Reward</th>
+			</tr>
+		</thead>
+		<tbody>
+		 	@foreach (var bounty in Model)
+			{
+				<tr>
+					<td>@bounty.user.Firstname</td>
+					<td>@bounty.bounty.Title</td>
+					<td>@bounty.bounty.Description</td>
+					<td>@bounty.bounty.reward</td>
+					<td>
+						<a asp-action="Edit" asp-route-id="@bounty.Id" class="btn btn-warning">Edit</a>
+						<a asp-action="Delete" asp-route-id="@bounty.Id" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			} 
+		</tbody>
+	</table>
+</div> 
