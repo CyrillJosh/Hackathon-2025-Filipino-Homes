@@ -1,0 +1,69 @@
+﻿@model Hackathon_2025_Filipino_Homes.Models.Account
+@{
+	ViewData["Title"] = "Registration - Filipino Homes";
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Create an Account</h2>
+
+            <form asp-controller="Authentication" asp-action="RegisterProcess" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="user.Firstname" class="form-label">First Name</label>
+                        <input asp-for="user.Firstname" class="form-control" />
+                        <span asp-validation-for="user.Firstname" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="user.Lastname" class="form-label">Last Name</label>
+                        <input asp-for="user.Lastname" class="form-control" />
+                        <span asp-validation-for="user.Lastname" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="user.Age" class="form-label">Age</label>
+                        <input asp-for="user.Age" class="form-control" />
+                        <span asp-validation-for="user.Age" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" type="email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label">Username</label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+                        <input name="ConfirmPassword" type="password" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-4">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

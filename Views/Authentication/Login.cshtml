@@ -1,5 +1,20 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Hackathon_2025_Filipino_Homes.Models.Account
 @{
+	ViewData["Title"] = "Login - Filipino Homes";
 }
+ 
+<div class="container">
+	<form asp-controller="Authentication" asp-action="LoginProcess" method="post">
+		<div class="form-group">
+			<label for="Username">Username</label>
+			<input type="text" asp-for="Username" class="form-control"/>
+			<span asp-validation-for="Username" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="Password">Password</label>
+			<input asp-for="Password" class="form-control" />
+			<span asp-validation-for="Password" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary">Sign In</button>
+	</form>
+</div>
