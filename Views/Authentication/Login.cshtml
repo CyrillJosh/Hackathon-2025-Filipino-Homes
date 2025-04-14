@@ -2,19 +2,48 @@
 @{
 	ViewData["Title"] = "Login - Filipino Homes";
 }
- 
+<link rel="stylesheet" type="text/css" href="~/css/CustomStyle.css"></link>
 <div class="container">
-	<form asp-controller="Authentication" asp-action="LoginProcess" method="post">
-		<div class="form-group">
-			<label for="Username">Username</label>
-			<input type="text" asp-for="Username" class="form-control"/>
-			<span asp-validation-for="Username" class="text-danger"></span>
+	<div class="row">
+		<form class="col-lg-6 d-flex" asp-controller="Authentication" asp-action="LoginProcess" method="post">
+			<div class="align-self-center w-100 h-100 p-5">
+				<h2 class="text-center">
+					Login
+				</h2>
+				<div class="my-3">
+					<div class="form-group my-3">
+						<label for="Username">Username</label>
+						<input type="text" asp-for="Username" class="form-control"/>
+						<span asp-validation-for="Username" class="text-danger"></span>
+					</div>
+					<div class="form-group my-3">
+						<label for="Password">Password</label>
+						<input asp-for="Password" class="form-control"/>
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+					<a href="#!" class="my-2 text-decoration-none text-red">Forget Password</a>
+				</div>
+				<button type="submit" class="btn btn-red my-2 w-100">Sign In</button>
+				<a href="/Authentication/Register" class="btn btn-red my-2 w-100">Register</a>
+			</div>
+		</form>
+		<div class="col-lg-6">
+			<div class="my-5">
+				<h3>
+					Why should you create an account?
+				</h3>
+				<p>
+					Powered by its growing 15,000 property agents, Filipino Homes provides a full range of services including property management, in tandem with affiliate Rent.ph; foreclosure listings; and real estate insurance and consultancy services.
+				</p>
+			</div>
+			<div class="my-5">
+				<h3>
+					Sell your property with us
+				</h3>
+				<p>
+					With its extensive presence online including all social media platforms, Filipino Homes can easily reach at least 10 million audience a day, making it the biggest marketing arm of property developers to showcase their products worldwide.
+				</p>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="Password">Password</label>
-			<input asp-for="Password" class="form-control" />
-			<span asp-validation-for="Password" class="text-danger"></span>
-		</div>
-		<button type="submit" class="btn btn-primary">Sign In</button>
-	</form>
+	</div>
 </div>
