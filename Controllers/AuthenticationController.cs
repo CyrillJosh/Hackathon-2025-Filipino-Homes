@@ -23,7 +23,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Homepage"); //Not implemeneted yet
+                return RedirectToAction("Index", "Bounty"); 
             }
             return View();
         }
@@ -40,7 +40,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
                };
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                return Redirect(ReturnUrl == null ? "/Rental" : ReturnUrl);
+                return Redirect(ReturnUrl == null ? "/Bounty/Home" : ReturnUrl);
             }
             else
             {
@@ -54,7 +54,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Rental");
+                return RedirectToAction("Home", "Bounty");
             }
             return View();
         }
