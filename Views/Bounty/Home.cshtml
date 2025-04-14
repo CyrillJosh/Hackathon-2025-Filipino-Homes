@@ -2,16 +2,41 @@
 @{
 	ViewData["Title"] = "Bounty Homepage - Filipino Homes";
 	var currentUserId = ViewBag.CurrentUserId as string;
+	<link rel="stylesheet" href="~/css/CustomStyle.css" type="text/css"/>
 }
 
-
- <div class="container">
-	<a class="btn btn-primary" asp-action="Create" asp-controller="Bounty" asp-route-id="@currentUserId">Create Bounty</a>
-
-
-	<h3>Homepage</h3>	
-
-	<table class="table table-striped table-dark">
+<div class="container">
+	@* <div>
+		<input type="text" placeholder="Search "/>
+	</div> *@
+	<div class="container row">
+		@foreach(var bounty in Model)
+		{
+			<div class="card text-center my-5 p-0">
+				<div class="card-header">
+					<h1>@bounty.Title.ToUpper()</h1>
+				</div>
+				<div class="card-body">
+					@* <img class="w-100" src="https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house.jpg" alt="Image" /> *@
+					<h5 class="card-title">@bounty.Title</h5>
+					<div class="hstack d-flex justify-content-center flex-wrap">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+							<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+						</svg>
+						<p class="m-0 ms-2">Location</p>
+					</div>
+					<p class="card-text">@bounty.Description</p>
+				</div>
+				<div class="card-footer">
+					<h2>$@bounty.reward.ToString("n2")</h2>
+					<hr/>
+					<p>@(bounty.status == false ? "Uncompleted" : "Completed")</p>
+				</div>
+			</div>
+		}
+	</div>
+	<a class="btn btn-red sticky-bottom-right  py-2" style="height: 3rem; width: 10rem;" asp-action="Create" asp-controller="Bounty" asp-route-id="@currentUserId">Create Bounty</a>
+	@* <table class="table table-striped table-dark">
 		<thead>
 			<tr>
 				<th>User</th>
@@ -30,5 +55,5 @@
 			</tr>
 			}
 		</tbody>
-	</table>
+	</table> *@
 </div> 

@@ -23,3 +23,19 @@
 .text-red {
     color: #D32F2F;
 }
+
+.sticky-bottom-right{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+.bg-tlight {
+    background-color: #F5F9FF;
+}
+
+.img-bounty{
+    aspect-ratio: 9/4;
+    object-fit: contain;
+}
+

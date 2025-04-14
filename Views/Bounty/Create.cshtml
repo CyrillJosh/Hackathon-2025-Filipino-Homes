@@ -1,6 +1,7 @@
 ﻿@model Hackathon_2025_Filipino_Homes.Models.Bounty
 @{
 	ViewData["Title"] = "Create Bounty - Filipino Homes";
+	<link rel="stylesheet" href="~/css/CustomStyle.css" type="text/css"/>
 }
 
 <div class="container-fluid">
@@ -21,6 +22,6 @@
 			<label for="Reward">Reward</label>
 			<input asp-for="reward" type="number" class="form-label" />
 		</div>
-		<button type="submit" class="btn btn-primary">Create Bounty</button>
+		<button type="submit" class="btn btn-red">Create Bounty</button>
 	</form>
 </div>
