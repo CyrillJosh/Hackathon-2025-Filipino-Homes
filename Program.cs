@@ -1,8 +1,10 @@
+using Hackathon_2025_Filipino_Homes.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<HackathonContext>(options =>)
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
