@@ -3,6 +3,7 @@ using Hackathon_2025_Filipino_Homes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon_2025_Filipino_Homes.Migrations
 {
     [DbContext(typeof(HackathonContext))]
-    partial class HackathonContextModelSnapshot : ModelSnapshot
+    [Migration("20250414052351_Updated Bounty Model")]
+    partial class UpdatedBountyModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,6 +27,9 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
             modelBuilder.Entity("Hackathon_2025_Filipino_Homes.Models.Account", b =>
                 {
                     b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BountyId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
@@ -43,6 +49,8 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BountyId");
+
                     b.HasIndex("UserId")
                         .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
@@ -53,9 +61,6 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
             modelBuilder.Entity("Hackathon_2025_Filipino_Homes.Models.Bounty", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AccountId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
@@ -70,8 +75,6 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
 
                     b.ToTable("bounty");
                 });
@@ -102,25 +105,22 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
 
             modelBuilder.Entity("Hackathon_2025_Filipino_Homes.Models.Account", b =>
                 {
+                    b.HasOne("Hackathon_2025_Filipino_Homes.Models.Bounty", "bounty")
+                        .WithMany("account")
+                        .HasForeignKey("BountyId");
+
                     b.HasOne("Hackathon_2025_Filipino_Homes.Models.User", "user")
                         .WithOne("account")
                         .HasForeignKey("Hackathon_2025_Filipino_Homes.Models.Account", "UserId");
+
+                    b.Navigation("bounty");
 
                     b.Navigation("user");
                 });
 
             modelBuilder.Entity("Hackathon_2025_Filipino_Homes.Models.Bounty", b =>
                 {
-                    b.HasOne("Hackathon_2025_Filipino_Homes.Models.Account", "account")
-                        .WithMany("bounty")
-                        .HasForeignKey("AccountId");
-
                     b.Navigation("account");
-                });
-
-            modelBuilder.Entity("Hackathon_2025_Filipino_Homes.Models.Account", b =>
-                {
-                    b.Navigation("bounty");
                 });
 
             modelBuilder.Entity("Hackathon_2025_Filipino_Homes.Models.User", b =>

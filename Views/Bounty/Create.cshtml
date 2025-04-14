@@ -1,10 +1,14 @@
 ﻿@model Hackathon_2025_Filipino_Homes.Models.Bounty
 @{
-	ViewData["Title"] = "Create Bounty - Filipnio Homes";
+	ViewData["Title"] = "Create Bounty - Filipino Homes";
 }
 
 <div class="container-fluid">
+	@Html.ValidationSummary()
 	<form asp-action="CreateProcess" asp-controller="Bounty" method="post">
+		<div class="form-group">
+			<input hidden asp-for="account" type="text" class="form-label" />
+		</div>
 		<div class="form-group">
 			<label for="Title">Title</label>
 			<input asp-for="Title" type="text" class="form-label" />
@@ -17,6 +21,6 @@
 			<label for="Reward">Reward</label>
 			<input asp-for="reward" type="number" class="form-label" />
 		</div>
-		<button type="submit" class="btn btn-primary-px-4">Create Bounty</button>
+		<button type="submit" class="btn btn-primary">Create Bounty</button>
 	</form>
 </div>

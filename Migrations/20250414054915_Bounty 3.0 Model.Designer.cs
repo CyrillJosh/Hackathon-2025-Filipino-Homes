@@ -3,6 +3,7 @@ using Hackathon_2025_Filipino_Homes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon_2025_Filipino_Homes.Migrations
 {
     [DbContext(typeof(HackathonContext))]
-    partial class HackathonContextModelSnapshot : ModelSnapshot
+    [Migration("20250414054915_Bounty 3.0 Model")]
+    partial class Bounty30Model
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +28,9 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BountyId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -71,7 +77,9 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("AccountId")
+                        .IsUnique()
+                        .HasFilter("[AccountId] IS NOT NULL");
 
                     b.ToTable("bounty");
                 });
@@ -112,8 +120,8 @@ namespace Hackathon_2025_Filipino_Homes.Migrations
             modelBuilder.Entity("Hackathon_2025_Filipino_Homes.Models.Bounty", b =>
                 {
                     b.HasOne("Hackathon_2025_Filipino_Homes.Models.Account", "account")
-                        .WithMany("bounty")
-                        .HasForeignKey("AccountId");
+                        .WithOne("bounty")
+                        .HasForeignKey("Hackathon_2025_Filipino_Homes.Models.Bounty", "AccountId");
 
                     b.Navigation("account");
                 });

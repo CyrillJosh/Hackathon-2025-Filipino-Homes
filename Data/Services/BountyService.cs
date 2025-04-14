@@ -11,21 +11,23 @@ namespace Hackathon_2025_Filipino_Homes.Data.Services
         {
             _context = context;
         }
-        public async Task Add(Account account)
+        public async Task Add(Bounty bounty)
         {
-            _context.bounty.Add(account.bounty);
-            await _context.SaveChangesAsync();
-            account.BountyId = account.bounty.Id;
-            _context.account.Add(account);
+            var account = await _context.account.FirstOrDefaultAsync(a => a.Id == bounty.AccountId);
+            if (account != null)
+            {
+                bounty.AccountId = account.Id;
+            }
+            _context.bounty.Add(bounty);
             await _context.SaveChangesAsync();
         }
-
-        public async Task<IEnumerable<Account>> GetAll()
+         
+        public async Task<IEnumerable<Bounty>> GetAll()
         {
-            var bounty = await _context.account.Include(u=> u.user).Include(b=> b.bounty).ToListAsync();
+            var bounty = await _context.bounty.Include(u=> u.account).ToListAsync();
             return bounty;
         }
 
-
+  
     }
 }
