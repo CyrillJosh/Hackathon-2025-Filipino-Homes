@@ -6,22 +6,31 @@
 
 <div class="container-fluid">
 	@Html.ValidationSummary()
-	<form class="row" asp-action="CreateProcess" asp-controller="Bounty" method="post">
-		<div class="form-group">
-			<input type="hidden" asp-for="AccountId" />
-		</div>
-		<div class="form-group col-12 my-2">
-			<label class="d-block" for="Title">Title</label>
-			<input asp-for="Title" type="text" class="form-label w-100" />
-		</div>
-		<div class="form-group col-12 my-2">
-			<label class="d-block" for="Title">Description</label>
-			<input asp-for="Description" type="text" class="form-label w-100" style="height: clamp(200px,250px,300px)"/>
-		</div>
-		<div class="form-group col-12 my-2">
-			<label class="d-block" for="Reward">Reward</label>
-			<input asp-for="reward" type="number" class="form-label w-100" />
-		</div>
-		<button type="submit" class="btn btn-red mx-2">Create Bounty</button>
-	</form>
+    <form asp-action="CreateProcess" asp-controller="Bounty" method="post" class="row g-3 needs-validation" novalidate>
+        @* Hidden AccountId *@
+        <input type="hidden" asp-for="AccountId" />
+
+        <div class="col-12">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" type="text" class="form-control" placeholder="Enter bounty title" required />
+            <div class="invalid-feedback">Please enter a title.</div>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="5" placeholder="Describe the task in detail" required></textarea>
+            <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="reward" class="form-label">Reward</label>
+            <input asp-for="reward" type="number" min="0" class="form-control" placeholder="e.g. 100 USDC" required />
+            <div class="invalid-feedback">Reward amount is required.</div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-red px-4">Create Bounty</button>
+        </div>
+    </form>
+
 </div>

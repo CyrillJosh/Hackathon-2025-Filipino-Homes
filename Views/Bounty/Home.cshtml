@@ -9,77 +9,48 @@
 	@* <div>
 		<input type="text" placeholder="Search "/>
 	</div> *@
-	<div class="container row">
-		@foreach(var bounty in Model)
-		{
+	<div class="container py-5">
+		<div class="row g-4">
+			@foreach (var bounty in Model)
+			{
+				<div class="col-md-6 col-lg-4">
+					<div class="card h-100 shadow-sm">
+						<div class="card-header bg-light text-center">
+							<h5 class="mb-0">@bounty.account.user.Firstname @bounty.account.user.Lastname</h5>
+						</div>
+						<div class="card-body d-flex flex-column">
+							@* Optional image *@
+							@* <img class="img-fluid mb-3 rounded" src="https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house.jpg" alt="Property Image" /> *@
 
-			<div class="card text-center my-5 p-0">
-				<div class="card-header">
-					<h1>@bounty.account.user.Firstname @bounty.account.user.Lastname</h1>
-				</div>
-				<div class="card-body">
-					@* <img class="w-100" src="https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house.jpg" alt="Image" /> *@
-					<h5 class="card-title">@bounty.Title</h5>
-					<div class="hstack d-flex justify-content-center flex-wrap">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-							<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-						</svg>
-						<p class="m-0 ms-2">Location</p>
+							<h5 class="card-title">@bounty.Title</h5>
+
+							<div class="d-flex align-items-center text-muted mb-2">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+									<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+								</svg>
+								<small>Location</small>
+							</div>
+
+							<p class="card-text flex-grow-1">@bounty.Description</p>
+						</div>
+						<div class="card-footer text-center bg-white">
+							<h4 class="text-success">$@bounty.reward.ToString("n2")</h4>
+							<div class="text-muted small mb-2">
+								@(bounty.status ? "✅ Completed" : "🕓 Uncompleted")
+							</div>
+
+							@if (bounty.AccountId != currentUserId)
+							{
+								<a class="btn btn-outline-primary w-100" href="@Url.Action("Private", "Chat", new { accountId = bounty.AccountId })">
+									Chat with Poster
+								</a>
+							}
+						</div>
 					</div>
-					<p class="card-text">@bounty.Description</p>
 				</div>
-				<div class="card-footer">
-					<h2>$@bounty.reward.ToString("n2")</h2>
-					<hr/>
-					<p>@(bounty.status == false ? "Uncompleted" : "Completed")</p>
-				</div>
-				@if (bounty.AccountId != currentUserId)
-				{
-					<a class="btn btn-primary" href="@Url.Action("Private", "Chat", new { accountId = bounty.AccountId })">Chat</a>
-				}
-			</div>
-		}
-	</div>
-	<a class="btn btn-red sticky-bottom-right  py-2" style="height: 3rem; width: 10rem;" asp-action="Create" asp-controller="Bounty" asp-route-id="@currentUserId">Create Bounty</a>
-	@* <table class="table table-striped table-dark">
-		<thead>
-			<tr>
-				<th>User</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Reward</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach(var bounty in Model){
-			<tr>
-					<td>@bounty?.account?.Username</td>
-					<td>@bounty?.Title</td>
-					<td>@bounty?.Description</td>
-					<td>@bounty?.reward</td>
-			</tr>
 			}
-		</tbody>
-	</table> *@
-</div>
-
-<footer class="border-top mt-5 bg-black text-white py-2" style="margin-bottom: -100px; height: 200px">
-	<div class="container h-100">
-		<h3>Contact Us</h3>
-		<div class="py-2">
-			<div class="row">
-				<p class="col-3">Charles André Pua</p>
-				<p class="col-2">09123-345-6789</p>
-			</div>
-			<div class="row">
-				<p class="col-3">Jerson Vargas</p>
-				<p class="col-2">09123-345-6789</p>
-			</div>
-			<div class="row">
-				<p class="col-3">Cyrill Josh A. Odato</p>
-				<p class="col-2">09123-345-6789</p>
-			</div>
 		</div>
-		@*  &copy; 2025 - Hackathon_2025_Filipino_Homes - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
 	</div>
-</footer>
+
+	<a class="btn btn-red sticky-bottom-right  py-2" style="height: 3rem; width: 10rem;" asp-action="Create" asp-controller="Bounty" asp-route-id="@currentUserId">Create Bounty</a>
+</div>
