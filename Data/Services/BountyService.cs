@@ -20,7 +20,7 @@ namespace Hackathon_2025_Filipino_Homes.Data.Services
          
         public async Task<IEnumerable<Bounty>> GetAll()
         {
-            var bounty = await _context.bounty.Include(u=> u.account).ToListAsync();
+            var bounty = await _context.bounty.Include(u=> u.account).Include(us => us.account.user).ToListAsync();
             return bounty;
         }
     }
