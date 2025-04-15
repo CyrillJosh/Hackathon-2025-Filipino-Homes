@@ -16,7 +16,7 @@
         {
             <li>
                 <a href="@Url.Action("Private", "Chat", new { accountId = conversation.OtherUserId })">
-                    Chat with @conversation.OtherUserFirstName @conversation.OtherUserLastName
+                    Chat with @conversation.OtherUserId
                     <div style="font-size: small; color: grey;">
                         Last message: @conversation.LastMessage.Content
                     </div>
