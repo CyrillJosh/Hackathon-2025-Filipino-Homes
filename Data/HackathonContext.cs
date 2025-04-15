@@ -10,5 +10,7 @@ namespace Hackathon_2025_Filipino_Homes.Data
         public DbSet<Bounty> bounty {get; set;}
         public DbSet<Account> account { get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<Message> Messages { get; set; }
+
     }
 }

@@ -1,6 +1,8 @@
 using Hackathon_2025_Filipino_Homes.Data;
 using Hackathon_2025_Filipino_Homes.Data.Services;
+using Hackathon_2025_Filipino_Homes.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                     o.LoginPath = "/Authentication/Login";
 
                 });
+
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<IUserIdProvider, CustomerIdProvider>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,10 +34,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapHub<ChatHub>("/chathub");
 app.MapStaticAssets();
 
 app.MapControllerRoute(

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Private Chat";
+    var senderId = ViewBag.SenderId as string;
+    var recipientId = ViewBag.RecipientId as string;
+}
+
+<div>
+    <h3>Chat</h3>
+    <div id="chatBox" style="border:1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px;"></div>
+    <input type="text" id="messageInput" placeholder="Type a message..." style="width: 80%;" />
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+    const senderId = "@senderId";
+    const recipientId = "@recipientId";
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chathub")
+        .build();
+
+    connection.on("ReceiveMessage", function (sender, message) {
+        const msgDiv = document.createElement("div");
+        msgDiv.innerText = (sender === senderId ? "You" : "Them") + ": " + message;
+        msgDiv.style.textAlign = sender === senderId ? "right" : "left";
+        document.getElementById("chatBox").appendChild(msgDiv);
+        scrollToBottom();
+    });
+
+    connection.start().then(function () {
+        connection.invoke("GetChatHistory", recipientId).then(function (history) {
+            history.forEach(msg => {
+                const div = document.createElement("div");
+                div.innerText = (msg.senderId === senderId ? "You" : "Them") + ": " + msg.content;
+                div.style.textAlign = msg.senderId === senderId ? "right" : "left";
+                document.getElementById("chatBox").appendChild(div);
+            });
+            scrollToBottom();
+        });
+    });
+
+    function sendMessage() {
+        const msg = document.getElementById("messageInput").value;
+        if (msg.trim() === "") return;
+
+        connection.invoke("SendMessage", recipientId, msg);
+        document.getElementById("messageInput").value = "";
+    }
+
+    function scrollToBottom() {
+        const box = document.getElementById("chatBox");
+        box.scrollTop = box.scrollHeight;
+    }
+</script>   
