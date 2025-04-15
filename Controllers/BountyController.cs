@@ -18,7 +18,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
         [Authorize]
         public async Task<IActionResult> Home()
         {
-            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? currentUserId = User.FindFirstValue("AccountId");
             ViewBag.CurrentUserId = currentUserId;
             var bounty = await _bountyService.GetAll();
             return View(bounty);
@@ -35,7 +35,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProcess([Bind("AccountId, Title, Description, reward")] Bounty bounty)
         {
-            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? currentUserId = User.FindFirstValue("AccountId");
 
             if (currentUserId == null)
             {

@@ -16,7 +16,6 @@ namespace Hackathon_2025_Filipino_Homes.Models
         public bool status { get; set; } = false;
         public string? AccountId { get; set; }
         [ForeignKey("AccountId")]
-        public Account? account { get; set; }
-
+        public Account? account { get; set; }   
     }
 }
