@@ -2,7 +2,19 @@
     ViewData["Title"] = "Home Page";
     <link href="~/css/CustomStyle.css" type="text/css" rel="stylesheet"/>
 }
-<img src="~/Homepage.svg" class="h-100 w-100"/>
-<div class=" d-flex">
-    <a class="btn btn-red rounded-5 position-absolute z-1 px-5 py-3" href="/Authentication/Login" style="left: 45%; bottom: 40%;">Get started</a>
+<div class="position-relative" style="height: 100vh; overflow: hidden;">
+    <!-- Background Image -->
+    <img src="~/Homepage.svg" class="img-fluid w-100 h-100 object-fit-cover" alt="Hero Background" />
+
+    <!-- Overlay -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+
+    <!-- Centered Content -->
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-white z-2">
+        <h1 class="display-4 fw-bold mb-3">Unlock Real Estate Opportunities</h1>
+        <p class="lead mb-4">Discover, earn, and invest in property bounties like never before.</p>
+        <a class="btn btn-red btn-lg px-5 py-3 rounded-pill shadow" href="/Authentication/Login">Get Started</a>
+    </div>
+
 </div>
+
