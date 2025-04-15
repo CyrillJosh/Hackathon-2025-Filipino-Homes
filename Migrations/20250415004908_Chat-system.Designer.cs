@@ -4,6 +4,7 @@ using Hackathon_2025_Filipino_Homes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon_2025_Filipino_Homes.Migrations
 {
     [DbContext(typeof(HackathonContext))]
-    partial class HackathonContextModelSnapshot : ModelSnapshot
+    [Migration("20250415004908_Chat-system")]
+    partial class Chatsystem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -23,7 +23,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Bounty"); 
+                return RedirectToAction("Home", "Bounty"); 
             }
             return View();
         }
@@ -37,12 +37,16 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
             if (valid)
             {
                 account = await _authenticationService.GetAccount(account.Username, account.Password);
-                var claims = new List<Claim> {
-               new Claim(ClaimTypes.Name, account.Username),
-              new Claim(ClaimTypes.NameIdentifier, account.Id)
-               };
-                var claimsIdentity = new ClaimsIdentity(claims, "Login");
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, account.Username),
+                    new Claim("AccountId", account.Id) // Important: Add the AccountId claim
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                 return Redirect(ReturnUrl == null ? "/Bounty/Home" : ReturnUrl);
             }
             else

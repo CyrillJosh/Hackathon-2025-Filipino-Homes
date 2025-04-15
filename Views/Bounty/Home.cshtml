@@ -32,6 +32,10 @@
 					<hr/>
 					<p>@(bounty.status == false ? "Uncompleted" : "Completed")</p>
 				</div>
+				@if (bounty.AccountId != currentUserId)
+				{
+					<a class="btn btn-primary" href="@Url.Action("Private", "Chat", new { accountId = bounty.AccountId })">Chat</a>
+				}
 			</div>
 		}
 	</div>
