@@ -6,22 +6,22 @@
 
 <div class="container-fluid">
 	@Html.ValidationSummary()
-	<form asp-action="CreateProcess" asp-controller="Bounty" method="post">
+	<form class="row" asp-action="CreateProcess" asp-controller="Bounty" method="post">
 		<div class="form-group">
 			<input type="hidden" asp-for="AccountId" />
 		</div>
-		<div class="form-group">
-			<label for="Title">Title</label>
-			<input asp-for="Title" type="text" class="form-label" />
+		<div class="form-group col-12 my-2">
+			<label class="d-block" for="Title">Title</label>
+			<input asp-for="Title" type="text" class="form-label w-100" />
 		</div>
-		<div class="form-group">
-			<label for="Title">Description</label>
-			<input asp-for="Description" type="text" class="form-label" />
+		<div class="form-group col-12 my-2">
+			<label class="d-block" for="Title">Description</label>
+			<input asp-for="Description" type="text" class="form-label w-100" style="height: clamp(200px,250px,300px)"/>
 		</div>
-		<div class="form-group">
-			<label for="Reward">Reward</label>
-			<input asp-for="reward" type="number" class="form-label" />
+		<div class="form-group col-12 my-2">
+			<label class="d-block" for="Reward">Reward</label>
+			<input asp-for="reward" type="number" class="form-label w-100" />
 		</div>
-		<button type="submit" class="btn btn-red">Create Bounty</button>
+		<button type="submit" class="btn btn-red mx-2">Create Bounty</button>
 	</form>
 </div>
