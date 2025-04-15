@@ -27,6 +27,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
             }
             return View();
         }
+       
         [HttpPost]
         public async Task<IActionResult> LoginProcess([Bind("Username, Password")] Account account, string ReturnUrl)
         {
@@ -47,7 +48,7 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
                 var principal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                return Redirect(ReturnUrl == null ? "/Bounty/Home" : ReturnUrl);
+                return Redirect(ReturnUrl == null ? "/Home/Index" : ReturnUrl);
             }
             else
             {
@@ -56,6 +57,12 @@ namespace Hackathon_2025_Filipino_Homes.Controllers
                 ModelState.AddModelError("Password", "The password is incorrect");
                 return View("Login", account);
             }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Authentication");
         }
         public IActionResult Register()
         {
