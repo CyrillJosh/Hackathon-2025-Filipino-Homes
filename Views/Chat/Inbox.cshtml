@@ -1,0 +1,27 @@
+﻿@model List<Hackathon_2025_Filipino_Homes.Models.ConversationModel>
+
+@{
+    ViewBag.Title = "Inbox";
+}
+
+<h2>Your Conversations</h2>
+<ul id="conversationList">
+    @if (Model.Count == 0)
+    {
+        <li>No messages yet.</li>
+    }
+    else
+    {
+        @foreach (var conversation in Model)
+        {
+            <li>
+                <a href="@Url.Action("Private", "Chat", new { accountId = conversation.OtherUserId })">
+                    Chat with @conversation.OtherUserFirstName @conversation.OtherUserLastName
+                    <div style="font-size: small; color: grey;">
+                        Last message: @conversation.LastMessage.Content
+                    </div>
+                </a>
+            </li>
+        }
+    }
+</ul>
