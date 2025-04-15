@@ -3,65 +3,10 @@
 	ViewData["Title"] = "Registration - Filipino Homes";
     <link href="~/css/CustomStyle.css" type="text/css" rel="stylesheet"/>
 }
-
-<div class="container mt-5">
+<img src="~/registerbg.svg" class="position-fixed z-n1 object-fit-contain m-0" width="100%" height="100%" style="margin-top: -10rem">
+<div class="container">
     <div class="row">
-        <div class="p-5 col-lg-6 align-self-center">
-            <h2 class="text-center mb-4">Create an Account</h2>
-            <form asp-controller="Authentication" asp-action="RegisterProcess" method="post">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label asp-for="user.Firstname" class="form-label">First Name</label>
-                        <input asp-for="user.Firstname" class="form-control" />
-                        <span asp-validation-for="user.Firstname" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6">
-                        <label asp-for="user.Lastname" class="form-label">Last Name</label>
-                        <input asp-for="user.Lastname" class="form-control" />
-                        <span asp-validation-for="user.Lastname" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label asp-for="user.Age" class="form-label">Age</label>
-                        <input asp-for="user.Age" class="form-control" />
-                        <span asp-validation-for="user.Age" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6">
-                        <label asp-for="Email" class="form-label">Email</label>
-                        <input asp-for="Email" type="email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="Username" class="form-label">Username</label>
-                    <input asp-for="Username" class="form-control" />
-                    <span asp-validation-for="Username" class="text-danger"></span>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label asp-for="Password" class="form-label">Password</label>
-                        <input asp-for="Password" type="password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="ConfirmPassword" class="form-label">Confirm Password</label>
-                        <input name="ConfirmPassword" type="password" class="form-control" />
-                    </div>
-                </div>
-                <div class="my-5">
-                    <button type="submit" class="btn btn-red px-4 w-100 my-2">Sign Up</button>
-                    <p>
-                        Already have an account?
-                        <a href="/Authentication/Login" class="text-decoration-none text-red">Login</a>
-                    </p>
-                </div>
-            </form>
-        </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 order-sm-2 order-lg-1">
             <div class="my-5">
                 <h3>
                     Why should you create an account?
@@ -78,6 +23,61 @@
                     With its extensive presence online including all social media platforms, Filipino Homes can easily reach at least 10 million audience a day, making it the biggest marketing arm of property developers to showcase their products worldwide.
                 </p>
             </div>
+        </div>
+        <div class="p-5 col-lg-6 align-self-center order-sm-1 bg-glass">
+            <h2 class="text-center mb-4">Create an Account</h2>
+            <form asp-controller="Authentication" asp-action="RegisterProcess" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="user.Firstname" class="form-label">First Name</label>
+                        <input asp-for="user.Firstname" class="form-control py-2" />
+                        <span asp-validation-for="user.Firstname" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="user.Lastname" class="form-label">Last Name</label>
+                        <input asp-for="user.Lastname" class="form-control py-2" />
+                        <span asp-validation-for="user.Lastname" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="user.Age" class="form-label">Age</label>
+                        <input asp-for="user.Age" class="form-control py-2" />
+                        <span asp-validation-for="user.Age" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" type="email" class="form-control py-2" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label">Username</label>
+                    <input asp-for="Username" class="form-control py-2" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control py-2" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+                        <input name="ConfirmPassword" type="password" class="form-control py-2" />
+                    </div>
+                </div>
+                <div class="my-5">
+                    <button type="submit" class="btn btn-red px-4 w-100 my-2 py-3">Sign Up</button>
+                    <p>
+                        Already have an account?
+                        <a href="/Authentication/Login" class="text-decoration-none text-red">Login</a>
+                    </p>
+                </div>
+            </form>
         </div>
     </div>
 </div>

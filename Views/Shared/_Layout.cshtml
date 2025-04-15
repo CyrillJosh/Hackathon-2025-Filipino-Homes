@@ -18,8 +18,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between flex-column-reverse">
+                    <ul class="navbar-nav flex-grow-1 gap-5">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -34,8 +34,8 @@
             </div>
         </nav>
     </header>
-    <div class="container bg-transparent">
-        <main role="main" class="pb-3">
+    <div class="container bg-transparent" style="height: 85vh">
+        <main role="main" class="pb-3 h-100">
             @RenderBody()
         </main>
     </div>

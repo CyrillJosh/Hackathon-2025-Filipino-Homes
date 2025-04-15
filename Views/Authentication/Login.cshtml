@@ -3,32 +3,32 @@
 	ViewData["Title"] = "Login - Filipino Homes";
 	<link rel="stylesheet" type="text/css" href="~/css/CustomStyle.css"/>
 }
-<div class="container">
-	<div class="row">
-		<form class="col-lg-6 d-flex" asp-controller="Authentication" asp-action="LoginProcess" method="post">
-			<div class="align-self-center w-100 h-100 p-5">
-				<h2 class="text-center">
-					Login
-				</h2>
-				<div class="my-3">
-					<div class="form-group my-3">
-						<label for="Username">Username</label>
-						<input type="text" asp-for="Username" class="form-control"/>
-						<span asp-validation-for="Username" class="text-danger"></span>
-					</div>
-					<div class="form-group my-3">
-						<label for="Password">Password</label>
-						<input asp-for="Password" type="password" class="form-control"/>
-						<span asp-validation-for="Password" class="text-danger"></span>
-					</div>
-					<a href="#!" class="my-2 text-decoration-none text-red">Forget Password</a>
+<img src="~/loginbg.svg" class="position-fixed z-n1 object-fit-contain m-0" width="100%" height="100%" style="margin-top: -10rem">
+<div class="container h-100 row">
+	<form class="col-lg-6 d-flex justify-content-center bg-glass" asp-controller="Authentication" asp-action="LoginProcess" method="post">
+		<div class="align-self-center w-100 p-5">
+			<h2 class="text-center">
+				Login
+			</h2>
+			<div class="my-3">
+				<div class="form-group my-3">
+					<label for="Username">Username</label>
+					<input type="text" asp-for="Username" class="form-control py-2"/>
+					<span asp-validation-for="Username" class="text-danger"></span>
 				</div>
-				<button type="submit" class="btn btn-red my-2 w-100">Sign In</button>
-				<a href="/Authentication/Register" class="btn btn-red my-2 w-100">Register</a>
+				<div class="form-group my-3">
+					<label for="Password">Password</label>
+					<input asp-for="Password" type="password" class="form-control py-2" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+				<a href="#!" class="my-2 text-decoration-none text-red">Forget Password</a>
 			</div>
-		</form>
-		<div class="col-lg-6">
-			<div class="my-5">
+			<button type="submit" class="btn btn-red my-2 mt-5 w-100 py-3">Sign In</button>
+			<a href="/Authentication/Register" class="btn btn-red mt-4 w-100 py-3">Register</a>
+		</div>
+	</form>
+	<div class="col-lg-6">
+			<div class="my-5 py-5">
 				<h3>
 					Why should you create an account?
 				</h3>
@@ -45,5 +45,4 @@
 				</p>
 			</div>
 		</div>
-	</div>
 </div>
